@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Tables</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Bookmark Application</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/user_tables}">Bookmark</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+    <div class="container">
+	<div class="row">
+		 <h1>List of Users</h1>
+	</div>	
+	
+    <div class = "row">
+    <div class = "col-lg-3">
+		<a th:href="@{/user_table/new}" class = "btn btn-primary btn-sm mb-3" >Add Users</a>
+		
+    </div>
+    </div>
+    
+	<table class="table table-striped table-bordered">
+		<thead class="table-dark">
+			<tr>
+				<th>User Id</th>
+				<th> User Name</th>
+				<th>Last Updated Date</th>
+				<th>Last Updated User</th>
+				<th>Last Transaction Id</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user_table: ${user_tables}">
+				<td th:text = "${user_table.user_id}"></td>
+				<td th:text = "${user_table.user_name}"></td>
+				<td th:text = "${user_table.last_updated_date}"></td>
+				<td th:text = "${user_table.last_updated_user}"></td>
+				<td th:text = "${user_table.last_transaction_id}"></td>
+				<td>
+					<a th:href = "@{/user_table/edit/{user_id} (id=${user_table.user_id})}"
+					class = "btn btn-primary">update</a>
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</body>
+</html>
